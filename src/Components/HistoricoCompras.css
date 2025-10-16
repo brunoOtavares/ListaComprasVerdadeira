@@ -1,0 +1,84 @@
+.historico-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.historico-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.view-dashboard-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.purchase-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 25px;
+  padding: 20px;
+}
+
+.purchase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.purchase-header h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.purchase-header span {
+  font-size: 0.9em;
+  color: #7f8c8d;
+}
+
+.purchase-items {
+  list-style: none;
+  padding: 0;
+}
+
+.purchase-items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f9f9f9;
+}
+
+.purchase-items .item-name {
+  font-weight: 500;
+  flex: 2;
+}
+
+.purchase-items .item-details {
+  color: #555;
+  flex: 1;
+  text-align: center;
+}
+
+.purchase-items .item-subtotal {
+  font-weight: bold;
+  flex: 1;
+  text-align: right;
+}
+
+.purchase-total {
+  margin-top: 20px;
+  text-align: right;
+  font-size: 1.2em;
+  color: #34495e;
+}
