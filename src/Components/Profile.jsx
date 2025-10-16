@@ -49,10 +49,12 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      <h2>User Profile</h2>
-      <p><strong>Name:</strong> {userProfile.name}</p>
-      <p><strong>Email:</strong> {userProfile.email}</p>
-      <p><strong>Age:</strong> {userProfile.age}</p>
+      <div className="profile-card">
+        <h2>User Profile</h2>
+        <p><strong>Name:</strong> {userProfile.name}</p>
+        <p><strong>Email:</strong> {userProfile.email}</p>
+        <p><strong>Age:</strong> {userProfile.age}</p>
+      </div>
     </div>
   );
 };
