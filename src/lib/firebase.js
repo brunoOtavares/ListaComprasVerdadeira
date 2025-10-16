@@ -5,7 +5,7 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCTZHv8LiuNuNcE2Edh0TnPIXCEEZBAPOQ",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "lista-de-compras-b5fed.firebaseapp.com",
   projectId: "lista-de-compras-b5fed",
   storageBucket: "lista-de-compras-b5fed.appspot.com",

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { auth } from '../lib/firebase';
 import './Header.css';
 
-export default function Header({ isOpen, setIsOpen }) {
+export default function Header() {
+  const [isOpen, setIsOpen] = React.useState(false);
   const location = useLocation();
   
   const menuItems = [
@@ -11,6 +13,10 @@ export default function Header({ isOpen, setIsOpen }) {
     { path: '/historico', label: 'historico de compras' },
     { path: '/dashboard', label: 'dashboard' }
   ];
+
+  const handleLogout = () => {
+    auth.signOut();
+  };
 
   return (
     <>
@@ -40,6 +46,7 @@ export default function Header({ isOpen, setIsOpen }) {
             </li>
           ))}
         </ul>
+        <button onClick={handleLogout} className="logout-btn">Logout</button>
       </nav>
     </header>
     </>

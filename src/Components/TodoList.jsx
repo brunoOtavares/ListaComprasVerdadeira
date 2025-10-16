@@ -1,30 +1,40 @@
 import React, { useState } from 'react';
 import { getItemEmoji } from '../utils/emojiMap';
+import { collection, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import './TodoList.css';
 
-export default function TodoList({ shoppingList, setShoppingList }) {
+export default function TodoList({ shoppingList, setShoppingList, auth, db }) {
   const [inputValue, setInputValue] = useState('');
 
-  const handleAddItem = () => {
+  const handleAddItem = async () => {
     if (inputValue.trim()) {
-      setShoppingList([...shoppingList, {
+      const newItem = {
         text: inputValue,
         completed: false,
         emoji: getItemEmoji(inputValue)
-      }]);
+      };
+      const user = auth.currentUser;
+      if (user) {
+        await addDoc(collection(db, 'users', user.uid, 'shoppingList'), newItem);
+      }
       setInputValue('');
     }
   };
 
-  const handleToggleItem = (index) => {
-    const newItems = [...shoppingList];
-    newItems[index].completed = !newItems[index].completed;
-    setShoppingList(newItems);
+  const handleToggleItem = async (item) => {
+    const user = auth.currentUser;
+    if (user) {
+      const itemRef = doc(db, 'users', user.uid, 'shoppingList', item.id);
+      await updateDoc(itemRef, { completed: !item.completed });
+    }
   };
 
-  const handleRemoveItem = (index) => {
-    const newItems = shoppingList.filter((_, i) => i !== index);
-    setShoppingList(newItems);
+  const handleRemoveItem = async (item) => {
+    const user = auth.currentUser;
+    if (user) {
+      const itemRef = doc(db, 'users', user.uid, 'shoppingList', item.id);
+      await deleteDoc(itemRef);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -53,12 +63,12 @@ export default function TodoList({ shoppingList, setShoppingList }) {
       ) : (
         <ul>
           {shoppingList.map((item, index) => (
-            <li key={index} className={item.completed ? 'completed' : ''}>
-              <span onClick={() => handleToggleItem(index)}>
+            <li key={item.id} className={item.completed ? 'completed' : ''}>
+              <span onClick={() => handleToggleItem(item)}>
                 <span className="item-emoji">{item.emoji || getItemEmoji(item.text)}</span>
                 {item.text}
               </span>
-              <button onClick={() => handleRemoveItem(index)}>Remover</button>
+              <button onClick={() => handleRemoveItem(item)}>Remover</button>
             </li>
           ))}
         </ul>

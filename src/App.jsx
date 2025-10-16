@@ -1,53 +1,98 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Header from "./Components/Header";
 import TodoList from "./Components/TodoList";
 import FazendoCompras from "./Components/FazendoCompras";
 import HistoricoCompras from "./Components/HistoricoCompras";
 import Dashboard from "./Components/Dashboard";
+import Login from './Components/Login';
+import { auth, db } from './lib/firebase';
+import { collection, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore';
 import './App.css';
 
 function App() {
-  const [shoppingList, setShoppingList] = useState(() => {
-    const savedList = localStorage.getItem('shoppingList');
-    return savedList ? JSON.parse(savedList) : [];
-  });
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [dataLoaded, setDataLoaded] = useState(false);
+  const [shoppingListLoaded, setShoppingListLoaded] = useState(false);
+  const [purchaseHistoryLoaded, setPurchaseHistoryLoaded] = useState(false);
+  const navigate = useNavigate();
+  const [shoppingList, setShoppingList] = useState([]);
 
-  const [purchaseHistory, setPurchaseHistory] = useState(() => {
-    const savedHistory = localStorage.getItem('purchaseHistory');
-    return savedHistory ? JSON.parse(savedHistory) : [];
-  });
-
-  const [isHeaderOpen, setIsHeaderOpen] = useState(false);
+  const [purchaseHistory, setPurchaseHistory] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
-  }, [shoppingList]);
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      setUser(user);
+      if (user && shoppingListLoaded && purchaseHistoryLoaded) {
+        setLoading(false);
+      } else if (!user) {
+        setLoading(false);
+      }
+    });
+    return () => unsubscribe();
+  }, [shoppingListLoaded, purchaseHistoryLoaded]);
 
   useEffect(() => {
-    localStorage.setItem('purchaseHistory', JSON.stringify(purchaseHistory));
-  }, [purchaseHistory]);
+    if (!loading && !user) {
+      navigate('/login');
+    }
+  }, [loading, user, navigate]);
 
-  const handleFinalizePurchase = (cart) => {
-    const newPurchase = {
-      date: new Date().toISOString(),
-      items: cart,
-      total: cart.reduce((total, item) => total + item.quantity * item.price, 0),
-    };
-    console.log("Finalizing purchase, new history will be:", [...purchaseHistory, newPurchase]);
-    setPurchaseHistory([...purchaseHistory, newPurchase]);
+
+
+  useEffect(() => {
+    if (user) {
+      const unsubscribeShoppingList = onSnapshot(collection(db, 'users', user.uid, 'shoppingList'), (snapshot) => {
+        const list = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setShoppingList(list);
+        setShoppingListLoaded(true);
+      });
+
+      const unsubscribePurchaseHistory = onSnapshot(collection(db, 'users', user.uid, 'purchaseHistory'), (snapshot) => {
+        const history = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setPurchaseHistory(history);
+        setPurchaseHistoryLoaded(true);
+      });
+
+      return () => {
+        unsubscribeShoppingList();
+        unsubscribePurchaseHistory();
+      };
+    }
+  }, [user]);
+
+  const handleFinalizePurchase = async (cart) => {
+    if (user) {
+      const newPurchase = {
+        date: serverTimestamp(),
+        items: cart,
+        total: cart.reduce((total, item) => total + item.quantity * item.price, 0),
+      };
+      await addDoc(collection(db, 'users', user.uid, 'purchaseHistory'), newPurchase);
+
+      // Clear the shopping list after purchase
+      shoppingList.forEach(async (item) => {
+        const itemRef = doc(db, 'users', user.uid, 'shoppingList', item.id);
+        await deleteDoc(itemRef);
+      });
+    }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="app-container">
-      <Header isOpen={isHeaderOpen} setIsOpen={setIsHeaderOpen} />
+      {user && <Header />}
       <main className="main-content">
         <Routes>
           <Route 
             path="/" 
-            element={<TodoList shoppingList={shoppingList} setShoppingList={setShoppingList} />} 
+            element={<TodoList shoppingList={shoppingList} setShoppingList={setShoppingList} auth={auth} db={db} />} 
           />
           <Route 
             path="/fazendo-compras" 
@@ -61,6 +106,7 @@ function App() {
             path="/dashboard" 
             element={<Dashboard purchaseHistory={purchaseHistory} />} 
           />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
     </div>

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '../lib/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import './Login.css';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -21,12 +23,14 @@ const Login = () => {
       }
       try {
         await createUserWithEmailAndPassword(auth, email, password);
+        navigate('/');
       } catch (error) {
         setError(error.message);
       }
     } else {
       try {
         await signInWithEmailAndPassword(auth, email, password);
+        navigate('/');
       } catch (error) {
         setError(error.message);
       }
