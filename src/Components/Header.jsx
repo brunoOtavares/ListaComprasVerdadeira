@@ -26,7 +26,7 @@ export default function Header({ isOpen, setIsOpen }) {
       </button>
       
       <header className={`sidebar ${isOpen ? 'open' : ''}`}>
-      <div className="brand">MarketDo</div>
+      <div className="brand"><img src="/vite.svg" alt="MarketDo Logo" className="brand-logo" /><span>MarketDo</span></div>
       <nav>
         <ul>
           {menuItems.map((item) => (
