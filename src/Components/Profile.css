@@ -1,0 +1,343 @@
+.profile-container {
+  padding: 2rem;
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.profile-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 2.2rem;
+  letter-spacing: -0.025em;
+  position: relative;
+}
+
+.profile-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  border-radius: var(--radius);
+}
+
+.profile-info {
+  background: var(--card-gradient);
+  backdrop-filter: blur(20px);
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow);
+}
+
+.avatar-icon {
+  font-size: 3rem;
+}
+
+.profile-basic-info {
+  flex: 1;
+}
+
+.profile-basic-info p {
+  margin-bottom: 0.8rem;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.profile-basic-info strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.subscription-status {
+  margin-top: 2rem;
+}
+
+.subscription-status h3 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.premium-status-active {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: var(--radius);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.premium-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(90deg, #ffd700 0%, #ffed4e 100%);
+  color: #333;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+}
+
+.premium-icon {
+  font-size: 1.2rem;
+}
+
+.premium-info {
+  color: #2e7d32;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.premium-since {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.premium-status-inactive {
+  text-align: center;
+}
+
+.premium-status-inactive p {
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.premium-benefits {
+  background: rgba(124, 58, 237, 0.1);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.premium-benefits h4 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.premium-benefits ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.premium-benefits li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.premium-benefits li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.premium-button {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+.premium-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.premium-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.premium-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.check-payment-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: var(--radius);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+.check-payment-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  background-color: #2980b9;
+}
+
+.check-payment-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.manual-payment-verification {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(52, 152, 219, 0.1);
+  border-radius: var(--radius);
+  border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+.manual-payment-verification h4 {
+  color: #3498db;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.manual-payment-verification p {
+  color: #555;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.payment-verification-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-id-input {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.payment-id-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.verify-payment-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+.verify-payment-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+.verify-payment-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.refresh-profile-button {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 1rem;
+}
+
+.refresh-profile-button:hover {
+  background-color: #229954;
+  transform: translateY(-2px);
+}
+
+.refresh-profile-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 1rem;
+  }
+  
+  .profile-info {
+    padding: 1.5rem;
+  }
+  
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .profile-basic-info p {
+    font-size: 1rem;
+  }
+  
+  .premium-badge {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .premium-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
