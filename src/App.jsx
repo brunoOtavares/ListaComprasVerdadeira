@@ -8,6 +8,7 @@ import FazendoCompras from "./Components/FazendoCompras";
 import HistoricoCompras from "./Components/HistoricoCompras";
 import Dashboard from "./Components/Dashboard";
 import Login from './Components/Login';
+import Profile from './Components/Profile';
 import { auth, db } from './lib/firebase';
 import { collection, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore';
 import './App.css';
@@ -107,6 +108,7 @@ function App() {
             element={<Dashboard purchaseHistory={purchaseHistory} />} 
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </main>
     </div>

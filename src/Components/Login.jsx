@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../lib/firebase';
+import { auth, db } from '../lib/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 import './Login.css';
 
 const Login = () => {
@@ -9,6 +10,8 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
   const [error, setError] = useState(null);
 
@@ -22,7 +25,13 @@ const Login = () => {
         return;
       }
       try {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        await setDoc(doc(db, "users", user.uid), {
+          name: name,
+          email: email,
+          age: parseInt(age),
+        });
         navigate('/');
       } catch (error) {
         setError(error.message);
@@ -54,13 +63,24 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         {isRegistering && (
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        )}
+                  <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <input
+                    type="number"
+                    placeholder="Age"
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}
+                  />        )}
         <button type="submit">{isRegistering ? 'Register' : 'Login'}</button>
         {error && <p className="error-message">{error}</p>}
         <p className="toggle-auth" onClick={() => setIsRegistering(!isRegistering)}>

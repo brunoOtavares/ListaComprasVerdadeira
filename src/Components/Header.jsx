@@ -11,7 +11,8 @@ export default function Header() {
     { path: '/', label: 'lista de compras' },
     { path: '/fazendo-compras', label: 'fazendo compras' },
     { path: '/historico', label: 'historico de compras' },
-    { path: '/dashboard', label: 'dashboard' }
+    { path: '/dashboard', label: 'dashboard' },
+    { path: '/profile', label: 'profile' }
   ];
 
   const handleLogout = () => {
