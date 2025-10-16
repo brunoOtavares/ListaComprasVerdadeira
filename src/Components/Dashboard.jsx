@@ -83,9 +83,10 @@ export default function Dashboard({ purchaseHistory }) {
       {
         label: 'Gasto por Compra (R$)',
         data: purchaseHistory.map(p => p.total),
-        borderColor: '#3498db',
-        backgroundColor: 'rgba(52, 152, 219, 0.2)',
+        borderColor: '#7c3aed',
+        backgroundColor: 'rgba(124, 58, 237, 0.15)',
         fill: true,
+        tension: 0.4,
       },
     ],
   };
@@ -97,7 +98,10 @@ export default function Dashboard({ purchaseHistory }) {
       {
         label: 'Quantidade Comprada',
         data: sortedItems.map(([, quantity]) => quantity),
-        backgroundColor: '#2ecc71',
+        backgroundColor: 'rgba(124, 58, 237, 0.8)',
+        borderColor: 'rgba(124, 58, 237, 1)',
+        borderWidth: 1,
+        borderRadius: 6,
       },
     ],
   };
@@ -109,7 +113,10 @@ export default function Dashboard({ purchaseHistory }) {
       {
         label: 'Quantidade Comprada',
         data: leastBoughtItems.map(([, quantity]) => quantity),
-        backgroundColor: '#e74c3c',
+        backgroundColor: 'rgba(139, 92, 246, 0.8)',
+        borderColor: 'rgba(139, 92, 246, 1)',
+        borderWidth: 1,
+        borderRadius: 6,
       },
     ],
   };
@@ -121,7 +128,10 @@ export default function Dashboard({ purchaseHistory }) {
       {
         label: 'Preço Unitário (R$)',
         data: mostExpensiveItems.map(([, price]) => price),
-        backgroundColor: '#9b59b6',
+        backgroundColor: 'rgba(167, 139, 250, 0.8)',
+        borderColor: 'rgba(167, 139, 250, 1)',
+        borderWidth: 1,
+        borderRadius: 6,
       },
     ],
   };
@@ -133,7 +143,10 @@ export default function Dashboard({ purchaseHistory }) {
       {
         label: 'Preço Unitário (R$)',
         data: leastExpensiveItems.map(([, price]) => price),
-        backgroundColor: '#f39c12',
+        backgroundColor: 'rgba(196, 181, 253, 0.8)',
+        borderColor: 'rgba(196, 181, 253, 1)',
+        borderWidth: 1,
+        borderRadius: 6,
       },
     ],
   };
