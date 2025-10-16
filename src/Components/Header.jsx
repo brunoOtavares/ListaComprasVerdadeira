@@ -6,10 +6,10 @@ export default function Header({ isOpen, setIsOpen }) {
   const location = useLocation();
   
   const menuItems = [
-    { path: '/', label: 'lista de compras', icon: '📝' },
-    { path: '/fazendo-compras', label: 'fazendo compras', icon: '🛒' },
-    { path: '/historico', label: 'historico de compras', icon: '📊' },
-    { path: '/dashboard', label: 'dashboard', icon: '📈' }
+    { path: '/', label: 'lista de compras' },
+    { path: '/fazendo-compras', label: 'fazendo compras' },
+    { path: '/historico', label: 'historico de compras' },
+    { path: '/dashboard', label: 'dashboard' }
   ];
 
   return (
@@ -35,7 +35,6 @@ export default function Header({ isOpen, setIsOpen }) {
                 to={item.path} 
                 className={location.pathname === item.path ? 'active' : ''}
               >
-                <span>{item.icon}</span>
                 {item.label}
               </Link>
             </li>

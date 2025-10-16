@@ -1,8 +1,7 @@
 .sidebar {
   width: 280px;
   height: 100vh;
-  background: var(--card-gradient);
-  backdrop-filter: blur(20px);
+  background: #f9fafb;
   color: var(--dark);
   padding: 2rem;
   position: fixed;
@@ -11,8 +10,7 @@
   display: flex;
   flex-direction: column;
   z-index: 100;
-  border-right: 1px solid rgba(99, 102, 241, 0.1);
-  box-shadow: var(--shadow-lg);
+  border-right: 1px solid #e5e7eb;
 }
 
 /* Botão de minimizar com 3 tracinhos */
@@ -67,8 +65,8 @@
 .brand {
   display: flex;
   align-items: center;
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: 2rem;
+  font-weight: 700;
   margin-bottom: 3rem;
   text-align: left;
   color: var(--primary);
@@ -79,23 +77,6 @@
   position: relative;
 }
 
-.brand-logo {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-}
-
-.brand::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 60px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-  border-radius: var(--radius);
-}
-
 .sidebar nav ul {
   list-style: none;
   padding: 0;
@@ -103,46 +84,32 @@
 }
 
 .sidebar nav ul li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .sidebar nav ul li a {
-  color: var(--gray);
+  color: rgb(32, 32, 250);
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1.25rem;
   border-radius: var(--radius-lg);
   transition: var(--transition);
-  font-weight: 500;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
   position: relative;
   overflow: hidden;
+  border-left: 3px solid transparent;
 }
 
-.sidebar nav ul li a::before {
-  content: '';
-  position: absolute;
-  left: -25px;
-  top: 0;
-  height: 100%;
-  width: 3px;
-  background: var(--primary);
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
-  border-radius: 0 3px 3px 0;
+.sidebar nav ul li a:hover {
+  background-color: #f3f4f6;
 }
 
-.sidebar nav ul li a:hover,
 .sidebar nav ul li a.active {
-  color: var(--primary);
-  transform: translateX(5px);
-}
-
-.sidebar nav ul li a:hover::before,
-.sidebar nav ul li a.active::before {
-  transform: scaleY(1);
+  font-weight: 600;
+  border-left-color: var(--primary);
 }
 
 .sidebar nav ul li a span {
