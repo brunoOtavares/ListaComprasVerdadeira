@@ -58,7 +58,8 @@ const Profile = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/create-preference', {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+      const response = await fetch(`${backendUrl}/create-preference`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +77,7 @@ const Profile = () => {
         // Verificar periodicamente se o pagamento foi concluído
         const checkPaymentStatus = setInterval(async () => {
           try {
-            const statusResponse = await fetch(`http://localhost:3000/check-payment-status/${auth.currentUser.uid}`);
+            const statusResponse = await fetch(`${backendUrl}/check-payment-status/${auth.currentUser.uid}`);
             const statusData = await statusResponse.json();
             
             if (statusData.isPaid) {
@@ -106,7 +107,7 @@ const Profile = () => {
         // Verificar periodicamente se o pagamento foi concluído
         const checkPaymentStatus = setInterval(async () => {
           try {
-            const statusResponse = await fetch(`http://localhost:3000/check-payment-status/${auth.currentUser.uid}`);
+            const statusResponse = await fetch(`${backendUrl}/check-payment-status/${auth.currentUser.uid}`);
             const statusData = await statusResponse.json();
             
             if (statusData.isPaid) {

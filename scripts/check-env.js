@@ -14,7 +14,8 @@ const requiredEnvVars = [
   'VITE_FIREBASE_MESSAGING_SENDER_ID',
   'VITE_FIREBASE_APP_ID',
   'MP_ACCESS_TOKEN',
-  'VITE_BACKEND_URL'
+  'VITE_BACKEND_URL',
+  'FRONTEND_URL'
 ];
 
 console.log('Checking environment variables...\n');

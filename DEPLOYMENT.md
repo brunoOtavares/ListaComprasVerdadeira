@@ -22,6 +22,9 @@ MP_ACCESS_TOKEN="APP_USR-3321566781530128-101609-9bdf641f37bf70f6a8bd1352ce25605
 
 # Backend URL (update with your production backend URL)
 VITE_BACKEND_URL="https://your-production-backend-url.com"
+
+# Frontend URL (para callbacks do Mercado Pago)
+FRONTEND_URL="https://your-vercel-app.vercel.app"
 ```
 
 ### Platform-Specific Instructions
@@ -41,6 +44,7 @@ VITE_BACKEND_URL="https://your-production-backend-url.com"
    - VITE_FIREBASE_APP_ID: 1:928934741826:web:7f6b6c9c7c6c9c7c6c9c7c
    - MP_ACCESS_TOKEN: APP_USR-3321566781530128-101609-9bdf641f37bf70f6a8bd1352ce256057-215062504
    - VITE_BACKEND_URL: https://your-production-backend-url.com
+   - FRONTEND_URL: https://your-vercel-app.vercel.app
 5. Make sure to select the appropriate environments (Production, Preview, Development)
 6. Redeploy your application using the "Redeploy" button or by pushing a new commit
 
@@ -76,7 +80,9 @@ VITE_BACKEND_URL="https://your-production-backend-url.com"
 3. **Build Process**: Some platforms require a rebuild after changing environment variables
 4. **CORS Issues**: Make sure your Firebase project allows your production domain
 
-### Troubleshooting Firebase API Key Error in Vercel
+### Troubleshooting Common Errors in Vercel
+
+#### Firebase API Key Error
 
 If you're seeing "Firebase: Error (auth/invalid-api-key)" in your Vercel deployment:
 
@@ -101,6 +107,34 @@ If you're seeing "Firebase: Error (auth/invalid-api-key)" in your Vercel deploym
    - Ensure your Firebase project allows your Vercel domain
    - Go to Firebase Console → Authentication → Settings → Authorized domains
    - Add your Vercel deployment URL (e.g., your-app.vercel.app)
+
+#### Mercado Pago "Failed to fetch" Error
+
+If you're seeing "Erro ao solicitar preferência de pagamento: Failed to fetch" after deployment:
+
+1. **Backend URL Configuration**:
+   - Make sure `VITE_BACKEND_URL` is set to your production backend URL
+   - Update it from `http://localhost:3000` to your deployed backend URL
+   - Example: `https://your-backend.herokuapp.com` or `https://your-api.vercel.app`
+
+2. **Backend Deployment**:
+   - Ensure your backend server is deployed and accessible
+   - The backend must be deployed separately from the frontend
+   - Common options: Heroku, Railway, Vercel Serverless, Render
+
+3. **CORS Configuration**:
+   - Make sure your backend allows requests from your Vercel frontend
+   - Update the CORS configuration in your backend to include your Vercel domain
+
+4. **Frontend URL Configuration**:
+   - Set `FRONTEND_URL` to your Vercel app URL
+   - This is used for Mercado Pago callbacks
+   - Example: `https://your-app.vercel.app`
+
+5. **Test Backend Connectivity**:
+   - Try accessing your backend endpoint directly in the browser
+   - Check if `/create-preference` endpoint is accessible
+   - Verify the backend is running and not crashed
 
 ### Verification
 

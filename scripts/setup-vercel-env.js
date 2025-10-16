@@ -15,7 +15,8 @@ const envVars = [
   { name: 'VITE_FIREBASE_MESSAGING_SENDER_ID', value: process.env.VITE_FIREBASE_MESSAGING_SENDER_ID },
   { name: 'VITE_FIREBASE_APP_ID', value: process.env.VITE_FIREBASE_APP_ID },
   { name: 'MP_ACCESS_TOKEN', value: process.env.MP_ACCESS_TOKEN },
-  { name: 'VITE_BACKEND_URL', value: process.env.VITE_BACKEND_URL }
+  { name: 'VITE_BACKEND_URL', value: process.env.VITE_BACKEND_URL },
+  { name: 'FRONTEND_URL', value: process.env.FRONTEND_URL }
 ];
 
 try {

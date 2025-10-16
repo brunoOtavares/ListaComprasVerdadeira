@@ -54,9 +54,9 @@ app.post('/create-preference', async (req, res) => {
       ],
       external_reference: userId, // Pass userId to identify the user after payment
       back_urls: {
-        success: `http://localhost:5173/payment-status?status=approved&user_id=${userId}`,
-        failure: `http://localhost:5173/payment-status?status=failure&user_id=${userId}`,
-        pending: `http://localhost:5173/payment-status?status=pending&user_id=${userId}`,
+        success: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/payment-status?status=approved&user_id=${userId}`,
+        failure: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/payment-status?status=failure&user_id=${userId}`,
+        pending: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/payment-status?status=pending&user_id=${userId}`,
       },
       payment_methods: {
         excluded_payment_types: [
