@@ -9,6 +9,7 @@ import HistoricoCompras from "./Components/HistoricoCompras";
 import Dashboard from "./Components/Dashboard";
 import Login from './Components/Login';
 import Profile from './Components/Profile';
+import PaymentStatus from './Components/PaymentStatus';
 import { auth, db } from './lib/firebase';
 import { collection, onSnapshot, addDoc, serverTimestamp, doc, getDoc, deleteDoc } from 'firebase/firestore';
 import './App.css';
@@ -121,6 +122,7 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/payment-status" element={<PaymentStatus />} />
         </Routes>
       </main>
     </div>
