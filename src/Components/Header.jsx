@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
-export default function Header() {
+export default function Header({ isOpen, setIsOpen }) {
   const location = useLocation();
   
   const menuItems = [
@@ -13,8 +13,20 @@ export default function Header() {
   ];
 
   return (
-    <header className="sidebar">
-      <div className="brand">marketdo</div>
+    <>
+      {/* Botão de minimizar para mobile */}
+      <button
+        className={`minimize-btn ${isOpen ? 'active' : ''}`}
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label="Menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <header className={`sidebar ${isOpen ? 'open' : ''}`}>
+      <div className="brand">MarketDo</div>
       <nav>
         <ul>
           {menuItems.map((item) => (
@@ -31,5 +43,6 @@ export default function Header() {
         </ul>
       </nav>
     </header>
+    </>
   );
 }

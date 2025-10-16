@@ -20,6 +20,8 @@ function App() {
     return savedHistory ? JSON.parse(savedHistory) : [];
   });
 
+  const [isHeaderOpen, setIsHeaderOpen] = useState(false);
+
   useEffect(() => {
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
   }, [shoppingList]);
@@ -40,7 +42,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <Header />
+      <Header isOpen={isHeaderOpen} setIsOpen={setIsHeaderOpen} />
       <main className="main-content">
         <Routes>
           <Route 
