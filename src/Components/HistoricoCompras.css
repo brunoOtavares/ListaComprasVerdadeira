@@ -1,84 +1,181 @@
 .historico-container {
   max-width: 900px;
-  margin: 20px auto;
-  padding: 20px;
+  margin: 0 auto;
+  padding: 24px;
 }
 
 .historico-container h2 {
   text-align: center;
-  margin-bottom: 30px;
-  color: #333;
+  margin-bottom: 32px;
+  color: #6d28d9;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: -0.025em;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .view-dashboard-button {
-  background-color: #3498db;
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
   color: white;
   border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 12px 20px;
+  border-radius: 12px;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+}
+
+.view-dashboard-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(124, 58, 237, 0.3);
+}
+
+.view-dashboard-button:active {
+  transform: translateY(0);
 }
 
 .purchase-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  margin-bottom: 25px;
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(109, 40, 217, 0.08);
+  margin-bottom: 24px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.purchase-card:hover {
+  box-shadow: 0 8px 28px rgba(109, 40, 217, 0.12);
+  transform: translateY(-2px);
 }
 
 .purchase-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 15px;
-  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.15);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .purchase-header h3 {
   margin: 0;
-  color: #2c3e50;
+  color: #6d28d9;
+  font-weight: 600;
+  font-size: 1.2rem;
 }
 
 .purchase-header span {
-  font-size: 0.9em;
-  color: #7f8c8d;
+  font-size: 0.95rem;
+  color: #7c3aed;
+  background: rgba(124, 58, 237, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
 }
 
 .purchase-items {
   list-style: none;
   padding: 0;
+  margin-bottom: 16px;
 }
 
 .purchase-items li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #f9f9f9;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+  transition: all 0.2s ease;
+}
+
+.purchase-items li:hover {
+  background: rgba(124, 58, 237, 0.05);
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: -8px;
+  margin-right: -8px;
+  border-radius: 8px;
 }
 
 .purchase-items .item-name {
   font-weight: 500;
   flex: 2;
+  color: #4c1d95;
 }
 
 .purchase-items .item-details {
-  color: #555;
+  color: #6b7280;
   flex: 1;
   text-align: center;
+  font-size: 0.95rem;
 }
 
 .purchase-items .item-subtotal {
-  font-weight: bold;
+  font-weight: 600;
   flex: 1;
   text-align: right;
+  color: #6d28d9;
 }
 
 .purchase-total {
   margin-top: 20px;
   text-align: right;
-  font-size: 1.2em;
-  color: #34495e;
+  font-size: 1.3rem;
+  color: #6d28d9;
+  font-weight: 700;
+  padding-top: 16px;
+  border-top: 1px solid rgba(124, 58, 237, 0.15);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(109, 40, 217, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  color: #7c3aed;
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .header-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .purchase-items li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .purchase-items .item-details,
+  .purchase-items .item-subtotal {
+    text-align: left;
+    width: 100%;
+  }
+  
+  .purchase-header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .purchase-total {
+    text-align: center;
+  }
 }

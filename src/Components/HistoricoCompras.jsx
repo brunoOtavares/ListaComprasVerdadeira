@@ -15,12 +15,14 @@ export default function HistoricoCompras({ purchaseHistory }) {
   }, [purchaseHistory]);
   return (
     <div className="historico-container">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className="header-section">
         <h2>Histórico de Compras</h2>
         <button onClick={() => navigate('/dashboard')} className="view-dashboard-button">Ver Dashboard</button>
       </div>
       {stored.length === 0 ? (
-        <p>Nenhuma compra foi finalizada ainda.</p>
+        <div className="empty-state">
+          <p>Nenhuma compra foi finalizada ainda.</p>
+        </div>
       ) : (
         stored.map((purchase, index) => (
           <div key={index} className="purchase-card">
