@@ -4,15 +4,16 @@
 }
 
 .main-content {
-  margin-left: 275px; /* sidebar width + padding */
-  padding: 24px;
+  margin-left: 280px; /* sidebar width */
+  padding: 2rem;
   width: 100%;
   transition: margin-left 0.3s ease;
+  min-height: 100vh;
 }
 
 @media (max-width: 768px) {
   .main-content {
     margin-left: 0;
-    padding: 16px;
+    padding: 1rem;
   }
 }

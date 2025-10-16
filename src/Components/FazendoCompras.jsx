@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getItemEmoji } from '../utils/emojiMap';
 import './FazendoCompras.css';
 
 export default function FazendoCompras({ shoppingList, onFinalizePurchase }) {
@@ -54,6 +55,12 @@ export default function FazendoCompras({ shoppingList, onFinalizePurchase }) {
     return cart.reduce((total, item) => total + (item.quantity * item.price), 0).toFixed(2);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleAddItemToCart();
+    }
+  };
+
   return (
     <div className="fazendo-compras-container">
       <h2>Fazendo Compras</h2>
@@ -61,6 +68,7 @@ export default function FazendoCompras({ shoppingList, onFinalizePurchase }) {
         <select
           value={selectedItem}
           onChange={(e) => setSelectedItem(e.target.value)}
+          onKeyPress={handleKeyPress}
           disabled={availableItems.length === 0}
         >
           <option value="" disabled>
@@ -81,45 +89,58 @@ export default function FazendoCompras({ shoppingList, onFinalizePurchase }) {
           className="quantity-input"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
+          onKeyPress={handleKeyPress}
           placeholder="Quantidade"
+          min="1"
         />
         <input
           type="number"
           className="price-input"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+          onKeyPress={handleKeyPress}
           step="0.01"
           placeholder="Valor"
+          min="0"
         />
         <button onClick={handleAddItemToCart} disabled={!selectedItem}>
           Adicionar
         </button>
       </div>
 
-      <div className="cart-items">
-        {cart.map((item, index) => (
-          <div key={index} className="cart-item">
-            <span className="item-name">{item.text}</span>
-            <div className="item-details">
-              <span>Qtd: {item.quantity}</span>
-              <span>Valor: R$ {item.price.toFixed(2)}</span>
-            </div>
-            <span className="item-total">
-              Subtotal: R$ {calculateItemTotal(item)}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      {cart.length > 0 && (
-        <div className="finalize-section">
-          <div className="grand-total">
-            <h3>Total da Compra: R$ {calculateGrandTotal()}</h3>
-          </div>
-          <button className="finalize-button" onClick={handleFinalize}>
-            Terminar Compra
-          </button>
+      {cart.length === 0 ? (
+        <div className="empty-cart">
+          Seu carrinho está vazio. Adicione itens para começar a comprar!
         </div>
+      ) : (
+        <>
+          <div className="cart-items">
+            {cart.map((item, index) => (
+              <div key={index} className="cart-item">
+                <span className="item-name">
+                  <span className="item-emoji">{item.emoji}</span>
+                  {item.text}
+                </span>
+                <div className="item-details">
+                  <span>Qtd: {item.quantity}</span>
+                  <span>Valor: R$ {item.price.toFixed(2)}</span>
+                </div>
+                <span className="item-total">
+                  Subtotal: R$ {calculateItemTotal(item)}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="finalize-section">
+            <div className="grand-total">
+              <h3>Total da Compra: R$ {calculateGrandTotal()}</h3>
+            </div>
+            <button className="finalize-button" onClick={handleFinalize}>
+              Terminar Compra
+            </button>
+          </div>
+        </>
       )}
     </div>
   );

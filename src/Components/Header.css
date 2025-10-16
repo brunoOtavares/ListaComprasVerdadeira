@@ -1,27 +1,42 @@
 .sidebar {
-  width: 250px;
+  width: 280px;
   height: 100vh;
-  background: transparent;
-  color: #6d28d9;
-  padding: 25px;
+  background: var(--card-gradient);
+  backdrop-filter: blur(20px);
+  color: var(--dark);
+  padding: 2rem;
   position: fixed;
   top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
   z-index: 100;
+  border-right: 1px solid rgba(99, 102, 241, 0.1);
+  box-shadow: var(--shadow-lg);
 }
 
 .brand {
-  font-size: 2.8em;
+  font-size: 2.5rem;
   font-weight: 800;
-  margin-bottom: 50px;
+  margin-bottom: 3rem;
   text-align: left;
-  color: #6d28d9;
+  color: var(--primary);
   letter-spacing: -0.05em;
   text-transform: lowercase;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.1;
+  position: relative;
+}
+
+.brand::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  border-radius: var(--radius);
 }
 
 .sidebar nav ul {
@@ -31,30 +46,51 @@
 }
 
 .sidebar nav ul li {
-  margin-bottom: 20px;
+  margin-bottom: 0.5rem;
 }
 
 .sidebar nav ul li a {
-  color: #6d28d9;
+  color: var(--gray);
   text-decoration: none;
-  font-size: 1.3em;
-  display: block;
-  padding: 16px 20px;
-  border-radius: 16px;
-  transition: all 0.3s ease;
-  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+  font-weight: 500;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  letter-spacing: -0.025em;
-  line-height: 1.3;
-  text-transform: lowercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar nav ul li a::before {
+  content: '';
+  position: absolute;
+  left: -25px;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: var(--primary);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+  border-radius: 0 3px 3px 0;
 }
 
 .sidebar nav ul li a:hover,
 .sidebar nav ul li a.active {
-  background: rgba(109, 40, 217, 0.08);
-  color: #5b21b6;
-  transform: translateX(8px);
-  box-shadow: 0 4px 12px rgba(109, 40, 217, 0.1);
+  color: var(--primary);
+  transform: translateX(5px);
+}
+
+.sidebar nav ul li a:hover::before,
+.sidebar nav ul li a.active::before {
+  transform: scaleY(1);
+}
+
+.sidebar nav ul li a span {
+  margin-right: 12px;
+  font-size: 1.2rem;
 }
 
 @media (max-width: 768px) {
@@ -68,10 +104,10 @@
   }
   
   .brand {
-    font-size: 2.2em;
+    font-size: 2rem;
   }
   
   .sidebar nav ul li a {
-    font-size: 1.1em;
+    font-size: 0.95rem;
   }
 }
