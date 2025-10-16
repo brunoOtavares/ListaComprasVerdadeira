@@ -17,7 +17,7 @@ const Profile = () => {
           const docSnap = await getDoc(docRef);
 
           if (docSnap.exists()) {
-            setUserProfile({ ...docSnap.data(), email: user.email });
+            setUserProfile({ ...docSnap.data(), email: user.email, createdAt: new Date(docSnap.data().createdAt).toLocaleDateString() });
           } else {
             setError('No user data found in Firestore.');
           }
@@ -52,9 +52,8 @@ const Profile = () => {
       <div className="profile-card">
         <h2>User Profile</h2>
         <p><strong>Name:</strong> {userProfile.name}</p>
-        <p><strong>Email:</strong> {userProfile.email}</p>
-        <p><strong>Age:</strong> {userProfile.age}</p>
-      </div>
+              <p><strong>Email:</strong> {userProfile.email}</p>
+              <p><strong>Account Created:</strong> {userProfile.createdAt}</p>      </div>
     </div>
   );
 };
