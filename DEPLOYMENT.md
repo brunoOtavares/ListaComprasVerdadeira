@@ -27,11 +27,28 @@ VITE_BACKEND_URL="https://your-production-backend-url.com"
 ### Platform-Specific Instructions
 
 #### Vercel
+
+**Option 1: Using Vercel Dashboard (Manual)**
 1. Go to your Vercel project dashboard
 2. Click on "Settings" tab
 3. Select "Environment Variables"
-4. Add all the environment variables listed above
-5. Redeploy your application
+4. Add all the environment variables listed above with these exact values:
+   - VITE_FIREBASE_API_KEY: AIzaSyCTZHv8LiuNuNcE2Edh0TnPIXCEEZBAPOQ
+   - VITE_FIREBASE_AUTH_DOMAIN: lista-de-compras-b5fed.firebaseapp.com
+   - VITE_FIREBASE_PROJECT_ID: lista-de-compras-b5fed
+   - VITE_FIREBASE_STORAGE_BUCKET: lista-de-compras-b5fed.appspot.com
+   - VITE_FIREBASE_MESSAGING_SENDER_ID: 928934741826
+   - VITE_FIREBASE_APP_ID: 1:928934741826:web:7f6b6c9c7c6c9c7c6c9c7c
+   - MP_ACCESS_TOKEN: APP_USR-3321566781530128-101609-9bdf641f37bf70f6a8bd1352ce256057-215062504
+   - VITE_BACKEND_URL: https://your-production-backend-url.com
+5. Make sure to select the appropriate environments (Production, Preview, Development)
+6. Redeploy your application using the "Redeploy" button or by pushing a new commit
+
+**Option 2: Using Vercel CLI (Automated)**
+1. Install Vercel CLI if you haven't already: `npm i -g vercel`
+2. Login to Vercel: `vercel login`
+3. Run the setup script: `npm run setup-vercel-env`
+4. Deploy to production: `vercel --prod`
 
 #### Netlify
 1. Go to your Netlify site dashboard
@@ -58,6 +75,32 @@ VITE_BACKEND_URL="https://your-production-backend-url.com"
 2. **Incorrect Variable Names**: Make sure all variable names match exactly (including `VITE_` prefix)
 3. **Build Process**: Some platforms require a rebuild after changing environment variables
 4. **CORS Issues**: Make sure your Firebase project allows your production domain
+
+### Troubleshooting Firebase API Key Error in Vercel
+
+If you're seeing "Firebase: Error (auth/invalid-api-key)" in your Vercel deployment:
+
+1. **Check Environment Variables in Vercel Dashboard**:
+   - Go to your Vercel project → Settings → Environment Variables
+   - Ensure ALL Firebase variables are set for the Production environment
+   - Variable names must EXACTLY match (including VITE_ prefix)
+
+2. **Verify VITE Prefix**:
+   - Vite only exposes environment variables that start with VITE_ to the frontend
+   - Make sure all your Firebase variables have the VITE_ prefix
+
+3. **Redeploy After Changes**:
+   - After setting environment variables, you must redeploy
+   - Go to your project → Deployments → Click the three dots → Redeploy
+
+4. **Check Build Logs**:
+   - Look at the build logs to see if environment variables are being loaded correctly
+   - You should see "Firebase initialized successfully" in the console if configured correctly
+
+5. **Firebase Console Settings**:
+   - Ensure your Firebase project allows your Vercel domain
+   - Go to Firebase Console → Authentication → Settings → Authorized domains
+   - Add your Vercel deployment URL (e.g., your-app.vercel.app)
 
 ### Verification
 

@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "server": "node server.js",
     "check-env": "node scripts/check-env.js",
-    "pre-deploy": "node scripts/pre-deploy.js"
+    "pre-deploy": "node scripts/pre-deploy.js",
+    "setup-vercel-env": "node scripts/setup-vercel-env.js"
   },
   "dependencies": {
     "chart.js": "^4.5.1",
