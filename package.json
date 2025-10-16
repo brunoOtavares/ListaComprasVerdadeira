@@ -8,7 +8,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "node server.js"
+    "server": "node server.js",
+    "check-env": "node scripts/check-env.js",
+    "pre-deploy": "node scripts/pre-deploy.js"
   },
   "dependencies": {
     "chart.js": "^4.5.1",
