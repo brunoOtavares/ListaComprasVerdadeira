@@ -30,6 +30,7 @@ const Login = () => {
           name: name,
           email: email,
           createdAt: user.metadata.creationTime,
+          isPremium: false, // New users are free by default
         });
         navigate('/');
       } catch (error) {

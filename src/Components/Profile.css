@@ -46,6 +46,26 @@
   min-width: 70px; /* Align labels */
 }
 
+.upgrade-button {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-top: 2rem;
+  transition: var(--transition);
+  width: 100%;
+}
+
+.upgrade-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
 .profile-card .error-message {
   color: var(--accent);
   margin-top: 1.5rem;
