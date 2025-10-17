@@ -48,25 +48,38 @@ Uma aplicação de lista de compras com funcionalidades premium, integrada com F
 
 ## Executando a Aplicação
 
-1. Inicie o servidor backend:
+1. Verifique se todas as variáveis de ambiente estão configuradas:
+   ```bash
+   npm run check-env
+   ```
+
+2. Inicie o servidor backend:
    ```bash
    npm run server
    ```
 
-2. Inicie o servidor de desenvolvimento:
+3. Inicie o servidor de desenvolvimento:
    ```bash
    npm run dev
    ```
 
-3. Acesse a aplicação em `http://localhost:5173`
+4. Acesse a aplicação em `http://localhost:5173`
 
 ## Deploy
 
+### Preparação para Deploy
+
+Antes de fazer o deploy, execute o script de preparação que verifica as variáveis de ambiente e builda o projeto:
+
+```bash
+npm run pre-deploy
+```
+
 ### Deploy no GitHub Pages
 
-1. Faça o build da aplicação:
+1. Execute o script de preparação:
    ```bash
-   npm run build
+   npm run pre-deploy
    ```
 
 2. Faça o deploy para o GitHub Pages usando o GitHub Actions ou manualmente.
@@ -76,6 +89,29 @@ Uma aplicação de lista de compras com funcionalidades premium, integrada com F
 - O backend (Express.js) deve ser implantado em um serviço como Heroku, Vercel ou Render
 - O frontend pode ser implantado no GitHub Pages, Vercel ou Netlify
 - Certifique-se de configurar as variáveis de ambiente corretamente no ambiente de produção
+
+## Solução de Problemas
+
+### Erro: Firebase: Error (auth/invalid-api-key)
+
+Este erro ocorre quando as variáveis de ambiente do Firebase não estão configuradas corretamente no ambiente de produção.
+
+**Solução:**
+1. Verifique se todas as variáveis de ambiente do Firebase estão definidas
+2. Use `npm run check-env` para verificar localmente
+3. Configure as variáveis de ambiente na sua plataforma de deploy (Vercel, Netlify, etc.)
+4. Para mais detalhes, consulte o arquivo [DEPLOYMENT.md](DEPLOYMENT.md)
+
+### Variáveis de Ambiente Necessárias
+
+- `VITE_FIREBASE_API_KEY`
+- `VITE_FIREBASE_AUTH_DOMAIN`
+- `VITE_FIREBASE_PROJECT_ID`
+- `VITE_FIREBASE_STORAGE_BUCKET`
+- `VITE_FIREBASE_MESSAGING_SENDER_ID`
+- `VITE_FIREBASE_APP_ID`
+- `MP_ACCESS_TOKEN`
+- `VITE_BACKEND_URL`
 
 ## Estrutura do Projeto
 
