@@ -25,17 +25,23 @@ function App() {
   const [purchaseHistory, setPurchaseHistory] = useState([]);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      setUser(user);
-      if (user) {
-        if (shoppingListLoaded && purchaseHistoryLoaded) {
+    try {
+      const unsubscribe = auth.onAuthStateChanged(user => {
+        console.log('Auth state changed:', user);
+        setUser(user);
+        if (user) {
+          if (shoppingListLoaded && purchaseHistoryLoaded) {
+            setLoading(false);
+          }
+        } else {
           setLoading(false);
         }
-      } else {
-        setLoading(false);
-      }
-    });
-    return () => unsubscribe();
+      });
+      return () => unsubscribe();
+    } catch (error) {
+      console.error('Error in auth state change:', error);
+      setLoading(false);
+    }
   }, [shoppingListLoaded, purchaseHistoryLoaded]);
 
   useEffect(() => {
@@ -85,7 +91,7 @@ function App() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
 
   return (
