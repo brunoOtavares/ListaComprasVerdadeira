@@ -48,13 +48,27 @@ FRONTEND_URL="https://your-vercel-app.vercel.app"
 5. Make sure to select the appropriate environments (Production, Preview, Development)
 6. Redeploy your application using the "Redeploy" button or by pushing a new commit
 
-**Importante**: Não use o arquivo vercel.json para configurar variáveis de ambiente. Configure-as diretamente no dashboard do Vercel como mostrado acima.
-
-**Option 2: Using Vercel CLI (Automated)**
+**Option 2: Using Vercel CLI with Environment Variables (Automated)**
 1. Install Vercel CLI if you haven't already: `npm i -g vercel`
 2. Login to Vercel: `vercel login`
 3. Run the setup script: `npm run setup-vercel-env`
 4. Deploy to production: `vercel --prod`
+
+**Option 3: Using Vercel CLI with Secrets (For vercel.json configuration)**
+1. Install Vercel CLI if you haven't already: `npm i -g vercel`
+2. Login to Vercel: `vercel login`
+3. Make sure you have a `.env` file with all the required environment variables
+4. Run the secrets setup script: `npm run setup-vercel-secrets`
+5. Deploy to production: `vercel --prod`
+
+**Important Note about vercel.json**:
+If you're using the vercel.json file configuration (which references secrets with @ prefix), you MUST use Option 3 to set up the secrets. The vercel.json file expects these secrets to exist in your Vercel account:
+
+```json
+"VITE_FIREBASE_API_KEY": "@firebase-api-key"
+```
+
+This references a secret named "firebase-api-key" that must be created in your Vercel account.
 
 #### Netlify
 1. Go to your Netlify site dashboard
@@ -81,6 +95,37 @@ FRONTEND_URL="https://your-vercel-app.vercel.app"
 2. **Incorrect Variable Names**: Make sure all variable names match exactly (including `VITE_` prefix)
 3. **Build Process**: Some platforms require a rebuild after changing environment variables
 4. **CORS Issues**: Make sure your Firebase project allows your production domain
+
+### Fixing "Secret does not exist" Error
+
+If you're getting an error like:
+```
+Deployment failed — Environment Variable "VITE_FIREBASE_API_KEY" references Secret "firebase-api-key", which does not exist.
+```
+
+This happens when your `vercel.json` file references secrets that haven't been created in your Vercel account. Here's how to fix it:
+
+**Option 1: Create the required secrets**
+1. Make sure you have a `.env` file with all the required variables
+2. Run: `npm run setup-vercel-secrets`
+3. Redeploy: `vercel --prod`
+
+**Option 2: Remove vercel.json and use environment variables directly**
+1. Delete or rename the `vercel.json` file
+2. Follow "Option 1" above to set environment variables in the Vercel dashboard
+3. Redeploy your application
+
+**Option 3: Update vercel.json to not use secrets**
+Replace the `vercel.json` content with:
+```json
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": "vite"
+}
+```
+Then set environment variables in the Vercel dashboard as shown in Option 1.
 
 ### Troubleshooting Common Errors in Vercel
 

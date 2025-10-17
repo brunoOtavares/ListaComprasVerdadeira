@@ -12,6 +12,8 @@
     "check-env": "node scripts/check-env.js",
     "pre-deploy": "node scripts/pre-deploy.js",
     "setup-vercel-env": "node scripts/setup-vercel-env.js",
+    "setup-vercel-secrets": "node scripts/setup-vercel-secrets.js",
+    "test-deployment-setup": "node scripts/test-deployment-setup.js",
     "check-render-deploy": "node scripts/check-render-deploy.js"
   },
   "dependencies": {
