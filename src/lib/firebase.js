@@ -4,28 +4,14 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-// Log environment variables for debugging (remove sensitive data in production)
-console.log('Environment check:', {
-  hasApiKey: !!import.meta.env.VITE_FIREBASE_API_KEY,
-  hasAuthDomain: !!import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  hasProjectId: !!import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  apiKeyLength: import.meta.env.VITE_FIREBASE_API_KEY?.length || 0
-});
-
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "lista-de-compras-b5fed.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "lista-de-compras-b5fed",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "lista-de-compras-b5fed.appspot.com",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "928934741826",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:928934741826:web:7f6b6c9c7c6c9c7c6c9c7c"
+  apiKey: "AIzaSyB8O60X4lA4gacVUZtgbzhaYQLVnwqr6EU",
+  authDomain: "lista-de-compras-b5fed.firebaseapp.com",
+  projectId: "lista-de-compras-b5fed",
+  storageBucket: "lista-de-compras-b5fed.appspot.com",
+  messagingSenderId: "928934741826",
+  appId: "1:928934741826:web:7f6b6c9c7c6c9c7c6c9c7c"
 };
-
-// Validate required Firebase config
-if (!firebaseConfig.apiKey) {
-  console.error('Firebase API key is missing. Please check your environment variables.');
-  throw new Error('Firebase API key is missing. Please check your environment variables.');
-}
 
 // Initialize Firebase with error handling
 let app;
