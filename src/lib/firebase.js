@@ -6,9 +6,9 @@ import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyB8O60X4lA4gacVUZtgbzhaYQLVnwqr6EU",
-  authDomain: "lista-de-comr.firebaseapp.com",
-  projectId: "lista-de-comr",
-  storageBucket: "lista-de-comr.appspot.com",
+  authDomain: "lista-de-compras-b5fed.firebaseapp.com",
+  projectId: "lista-de-compras-b5fed",
+  storageBucket: "lista-de-compras-b5fed.appspot.com",
   messagingSenderId: "928934741826",
   appId: "1:928934741826:web:7f6b6c9c7c6c9c7c6c9c7c"
 };

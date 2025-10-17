@@ -16,7 +16,7 @@ Certifique-se de que seu repositório contém:
 - `server.js` - Seu servidor Express
 - `package.json` - Com as dependências corretas
 - `render.yaml` - Configuração do serviço (já criado)
-- `src/services/lista-de-compras-b5fed-firebase-adminsdk-fbsvc-0283bee0a1.json` - Credenciais do Firebase
+- `src/services/lista-de-comr-firebase-adminsdk.json` - Credenciais do Firebase
 
 ### 2. Configurar o Render
 
