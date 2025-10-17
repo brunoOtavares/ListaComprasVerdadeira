@@ -13,6 +13,20 @@ export default defineConfig(({ command, mode }) => {
       rollupOptions: {
         // external: ['firebase/firestore']
       }
+    },
+    // Configuração para lidar com roteamento do lado do cliente
+    server: {
+      // Middleware para fallback para index.html em rotas não encontradas
+      middlewareMode: false,
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          // Se a requisição não for para um arquivo estático, retorna index.html
+          if (!req.url.includes('.') && req.url !== '/') {
+            req.url = '/'
+          }
+          next()
+        })
+      }
     }
   }
 })
