@@ -1,0 +1,34 @@
+[33md1cbdaa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m update
+[33m34099b1[m update
+[33mcd3557d[m update
+[33mff852e0[m update
+[33md17cb4e[m update
+[33m19d9ddd[m Fix Firebase invalid API key error in production
+[33m539faa5[m update
+[33ma2a1667[m Adicionando funcionalidades de pagamento premium e melhorias na aplicação
+[33m4d07d3d[m Fix: Load environment variables in server.js using dotenv
+[33mbfb133b[m Docs: Add .env.example for required environment variables
+[33m1fdf843[m Feat: Implement premium system with Mercado Pago integration
+[33m97f3dd1[m Feat: Remove Stripe and Mercado Pago integrations
+[33mdf363f7[m Feat: Replace age with account creation date on profile page
+[33m3ba1cfe[m Style: Enhance Profile page aesthetics with global styles
+[33m76046fd[m Style: Update Profile page styling to match project theme
+[33m705fbf6[m Feat: Add user name and age to registration, create profile page, and update navigation
+[33m33d64fd[m Fix: Bundle firebase/firestore by removing from external in vite.config.js
+[33mff70728[m update
+[33mf65be55[m fix: Externalize firebase/firestore in vite.config.js to resolve build error
+[33mdb0956a[m feat: Implement Firebase authentication and Firestore integration
+[33md1153f8[m update
+[33m8a6700b[m update
+[33mf56809d[m update
+[33mf38a638[m update
+[33m1583133[m Merge branch 'main' of https://github.com/brunoOtavares/ListaComprasVerdadeira
+[33m54bcc6d[m Fix casing of global.css import
+[33m63f46d9[m update
+[33m04214fd[m first commit
+[33m4cf9535[m update
+[33m5224929[m update
+[33m703ee57[m update layout
+[33m03a8a7b[m update
+[33m911bbf1[m update dashboard
+[33m0f620bb[m inicial
