@@ -28,6 +28,10 @@ export default function FazendoCompras({ shoppingList, onFinalizePurchase }) {
     }
   };
 
+  const handleRemoveItemFromCart = (indexToRemove) => {
+    setCart(cart.filter((_, index) => index !== indexToRemove));
+  };
+
   const handleFinalize = () => {
     const finalizeHandler = onFinalizePurchase;
     if (typeof finalizeHandler === 'function') {
@@ -128,6 +132,13 @@ export default function FazendoCompras({ shoppingList, onFinalizePurchase }) {
                 <span className="item-total">
                   Subtotal: R$ {calculateItemTotal(item)}
                 </span>
+                <button
+                  className="remove-item-button"
+                  onClick={() => handleRemoveItemFromCart(index)}
+                  title="Remover item"
+                >
+                  ✕
+                </button>
               </div>
             ))}
           </div>

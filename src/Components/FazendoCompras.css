@@ -193,6 +193,35 @@
   text-align: right;
   font-size: 1.1rem;
   margin-left: auto;
+  margin-right: 1rem;
+}
+
+.remove-item-button {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+  flex-shrink: 0;
+}
+
+.remove-item-button:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.4);
+}
+
+.remove-item-button:active {
+  transform: scale(0.95);
 }
 
 .finalize-section {
@@ -305,6 +334,8 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
+    position: relative;
+    padding-right: 3rem;
   }
   
   .item-details {
@@ -315,6 +346,12 @@
   .item-total {
     width: 100%;
     text-align: left;
+  }
+  
+  .remove-item-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
   }
   
   .finalize-section {
