@@ -31,7 +31,7 @@ const checks = [
   },
   {
     name: 'Arquivo de credenciais do Firebase',
-    check: () => fs.existsSync(join(__dirname, '../src/services/lista-de-comr-firebase-adminsdk.json')),
+    check: () => fs.existsSync(join(__dirname, '../src/services/lista-de-compras-b5fed-firebase-adminsdk-fbsvc-0283bee0a1.json')),
     errorMsg: 'Arquivo JSON do Firebase Admin não encontrado em src/services/'
   },
   {

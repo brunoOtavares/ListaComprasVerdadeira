@@ -18,7 +18,7 @@ import { dirname, join } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const serviceAccountPath = join(__dirname, 'src', 'services', 'lista-de-comr-firebase-adminsdk.json');
+const serviceAccountPath = join(__dirname, 'src', 'services', 'lista-de-compras-b5fed-firebase-adminsdk-fbsvc-0283bee0a1.json');
 const serviceAccount = JSON.parse(readFileSync(serviceAccountPath, 'utf8'));
 
 initializeApp({
