@@ -11,7 +11,8 @@
     "server": "node server.js",
     "check-env": "node scripts/check-env.js",
     "pre-deploy": "node scripts/pre-deploy.js",
-    "setup-vercel-env": "node scripts/setup-vercel-env.js"
+    "setup-vercel-env": "node scripts/setup-vercel-env.js",
+    "check-render-deploy": "node scripts/check-render-deploy.js"
   },
   "dependencies": {
     "chart.js": "^4.5.1",
@@ -20,7 +21,6 @@
     "express": "^5.1.0",
     "firebase": "^12.4.0",
     "firebase-admin": "^13.5.0",
-    "mercadopago": "^2.9.0",
     "react": "^19.1.1",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^19.1.1",

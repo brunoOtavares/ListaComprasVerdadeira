@@ -9,7 +9,6 @@ import HistoricoCompras from "./Components/HistoricoCompras";
 import Dashboard from "./Components/Dashboard";
 import Login from './Components/Login';
 import Profile from './Components/Profile';
-import PaymentStatus from './Components/PaymentStatus';
 import { auth, db } from './lib/firebase';
 import { collection, onSnapshot, addDoc, serverTimestamp, doc, getDoc, deleteDoc } from 'firebase/firestore';
 import './App.css';
@@ -17,7 +16,6 @@ import './App.css';
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isPremium, setIsPremium] = useState(false); // New state for premium status
   const [dataLoaded, setDataLoaded] = useState(false);
   const [shoppingListLoaded, setShoppingListLoaded] = useState(false);
   const [purchaseHistoryLoaded, setPurchaseHistoryLoaded] = useState(false);
@@ -27,22 +25,13 @@ function App() {
   const [purchaseHistory, setPurchaseHistory] = useState([]);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async user => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
       setUser(user);
       if (user) {
-        // Fetch premium status from Firestore
-        const userDocRef = doc(db, 'users', user.uid);
-        const userDocSnap = await getDoc(userDocRef);
-        if (userDocSnap.exists()) {
-          setIsPremium(userDocSnap.data().isPremium || false);
-        } else {
-          setIsPremium(false);
-        }
         if (shoppingListLoaded && purchaseHistoryLoaded) {
           setLoading(false);
         }
       } else {
-        setIsPremium(false);
         setLoading(false);
       }
     });
@@ -116,13 +105,12 @@ function App() {
             path="/historico" 
             element={<HistoricoCompras purchaseHistory={purchaseHistory} />} 
           />
-          <Route 
-            path="/dashboard" 
-            element={isPremium ? <Dashboard purchaseHistory={purchaseHistory} /> : <div className="premium-required"><h2>Acesso Premium Necessário</h2><p>Faça upgrade para Premium para acessar o Dashboard.</p></div>} 
+          <Route
+            path="/dashboard"
+            element={<Dashboard purchaseHistory={purchaseHistory} />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/payment-status" element={<PaymentStatus />} />
         </Routes>
       </main>
     </div>

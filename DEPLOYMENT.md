@@ -31,7 +31,7 @@ FRONTEND_URL="https://your-vercel-app.vercel.app"
 
 #### Vercel
 
-**Option 1: Using Vercel Dashboard (Manual)**
+**Option 1: Using Vercel Dashboard (Manual - Recommended)**
 1. Go to your Vercel project dashboard
 2. Click on "Settings" tab
 3. Select "Environment Variables"
@@ -47,6 +47,8 @@ FRONTEND_URL="https://your-vercel-app.vercel.app"
    - FRONTEND_URL: https://your-vercel-app.vercel.app
 5. Make sure to select the appropriate environments (Production, Preview, Development)
 6. Redeploy your application using the "Redeploy" button or by pushing a new commit
+
+**Importante**: Não use o arquivo vercel.json para configurar variáveis de ambiente. Configure-as diretamente no dashboard do Vercel como mostrado acima.
 
 **Option 2: Using Vercel CLI (Automated)**
 1. Install Vercel CLI if you haven't already: `npm i -g vercel`
